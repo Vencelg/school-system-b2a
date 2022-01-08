@@ -19,6 +19,7 @@ class CreateTeachersTable extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->date('dateOfBirth');
+            $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
