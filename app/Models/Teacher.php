@@ -20,6 +20,6 @@ class Teacher extends Model
 
     public function subject() :HasOne
     {
-        return $this->hasOne(Subject::class);
+        return $this->hasOne(Subject::class, 'teacher_id', 'id');
     }
 }

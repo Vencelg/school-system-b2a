@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Student extends Model
@@ -17,9 +18,9 @@ class Student extends Model
         'dateOfEnroll',
     ];
 
-    public function group(): HasOne
+    public function group(): BelongsTo
     {
-        return $this->hasOne(Group::class);
+        return $this->belongsTo(Group::class, 'group_id', 'id');
     }
 
 }

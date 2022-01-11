@@ -16,11 +16,11 @@ class Group extends Model
 
     public function subjects() :HasMany
     {
-        return $this->hasMany(Subject::class);
+        return $this->hasMany(Subject::class, 'group_id', 'id');
     }
 
     public function students() :HasMany
     {
-        return $this->hasMany(Student::class);
+        return $this->hasMany(Student::class, 'group_id', 'id');
     }
 }
