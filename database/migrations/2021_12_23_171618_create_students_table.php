@@ -19,7 +19,6 @@ class CreateStudentsTable extends Migration
             $table->string('lastname');
             $table->date('dateOfBirth');
             $table->date('dateOfEnroll');
-            $table->foreignId('group_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

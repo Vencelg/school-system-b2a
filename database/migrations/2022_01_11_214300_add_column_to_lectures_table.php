@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTeachersTable extends Migration
+class AddColumnToLecturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreateTeachersTable extends Migration
      */
     public function up()
     {
-        Schema::create('teachers', function (Blueprint $table) {
-            $table->id();
-            $table->string('titles');
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->date('dateOfBirth');
-            $table->timestamps();
+        Schema::table('lectures', function (Blueprint $table) {
+            $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
         });
     }
 
@@ -30,6 +25,8 @@ class CreateTeachersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teachers');
+        Schema::table('lectures', function (Blueprint $table) {
+            $table->dropColumn('subject_id');
+        });
     }
 }

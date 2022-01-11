@@ -16,7 +16,6 @@ class CreateExercisesTable extends Migration
         Schema::create('exercises', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
             $table->boolean('ownComputer');
             $table->timestamps();
         });
