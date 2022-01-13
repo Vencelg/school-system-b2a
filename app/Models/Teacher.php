@@ -18,8 +18,4 @@ class Teacher extends Model
         'subject_id'
     ];
 
-    public function subject() :HasOne
-    {
-        return $this->hasOne(Subject::class, 'teacher_id', 'id');
-    }
 }
