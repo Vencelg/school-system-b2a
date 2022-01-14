@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TeacherFactory extends Factory
+class GarantFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,10 +14,8 @@ class TeacherFactory extends Factory
     public function definition()
     {
         return [
-            'titles' => $this->faker->title,
-            'firstname' => $this->faker->firstName,
-            'lastname' => $this->faker->lastName,
-            'dateOfBirth' => $this->faker->date,
+            'teacher_id' => $this->faker->numberBetween(1, 5),
+            'subject_id' => $this->faker->unique->numberBetween(1, 6),
         ];
     }
 }

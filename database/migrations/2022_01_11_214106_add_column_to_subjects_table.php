@@ -26,7 +26,7 @@ class AddColumnToSubjectsTable extends Migration
     public function down()
     {
         Schema::table('subjects', function (Blueprint $table) {
-            $table->dropColumn(['teacher_id', 'group_id']);
+            $table->dropColumn(['group_id']);
         });
     }
 }
