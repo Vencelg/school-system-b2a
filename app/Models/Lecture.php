@@ -11,7 +11,8 @@ class Lecture extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'presentation_date'
     ];
 
     public function subject(): BelongsTo

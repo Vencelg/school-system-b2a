@@ -16,8 +16,8 @@ class StudentFactory extends Factory
         return [
             'firstname' => $this->faker->firstName,
             'lastname' => $this->faker->lastName,
-            'dateOfBirth' => $this->faker->date,
-            'dateOfEnroll' => $this->faker->dateTimeBetween('+0 days', '+2 years'),
+            'date_of_birth' => $this->faker->date,
+            'date_of_enroll' => $this->faker->dateTimeBetween('+0 days', '+2 years'),
             'group_id' => $this->faker->numberBetween(1, 3),
         ];
     }

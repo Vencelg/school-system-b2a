@@ -16,10 +16,10 @@ class Subject extends Model
         'name',
     ];
 
-    public function garant(): BelongsTo
-    {
-        return $this->belongsTo(Garant::class, 'garant_id', 'id');
-    }
+    /*public function garant(): BelongsTo
+     {
+         return $this->belongsTo(Garant::class, 'garant_id', 'id');
+     }*/
 
     public function group(): BelongsTo
     {

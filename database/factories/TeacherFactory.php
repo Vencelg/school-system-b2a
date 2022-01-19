@@ -17,7 +17,7 @@ class TeacherFactory extends Factory
             'titles' => $this->faker->title,
             'firstname' => $this->faker->firstName,
             'lastname' => $this->faker->lastName,
-            'dateOfBirth' => $this->faker->date,
+            'date_of_birth' => $this->faker->date,
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Student extends Model
@@ -14,13 +15,13 @@ class Student extends Model
     protected $fillable = [
         'firstname',
         'lastname',
-        'dateOfBirth',
-        'dateOfEnroll',
+        'date_of_birth',
+        'date_of_enroll',
     ];
 
-    public function group(): BelongsTo
+    public function group(): BelongsToMany
     {
-        return $this->belongsTo(Group::class, 'group_id', 'id');
+        return $this->belongsToMany(Group::class);
     }
 
 }

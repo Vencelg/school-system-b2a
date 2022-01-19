@@ -15,8 +15,8 @@ class ExerciseFactory extends Factory
     {
         return [
             'name' => $this->faker->city,
-            'ownComputer' => $this->faker->boolean,
-            'subject_id' => $this->faker->numberBetween(1,6),
+            'own_computer' => $this->faker->boolean,
+            'subject_id' => $this->faker->numberBetween(1, 6),
 
         ];
     }

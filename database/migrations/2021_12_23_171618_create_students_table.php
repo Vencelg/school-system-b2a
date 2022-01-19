@@ -17,8 +17,8 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('firstname');
             $table->string('lastname');
-            $table->date('dateOfBirth');
-            $table->date('dateOfEnroll');
+            $table->date('date_of_birth');
+            $table->date('date_of_enroll');
             $table->timestamps();
         });
     }

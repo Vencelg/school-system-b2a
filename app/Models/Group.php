@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Group extends Model
@@ -14,13 +15,13 @@ class Group extends Model
         'name',
     ];
 
-    public function subjects() :HasMany
+    public function subjects() :BelongsToMany
     {
-        return $this->hasMany(Subject::class, 'group_id', 'id');
+        return $this->belongsToMany(Subject::class, 'group_id', 'id');
     }
 
-    public function students() :HasMany
+    public function students() :BelongsToMany
     {
-        return $this->hasMany(Student::class, 'group_id', 'id');
+        return $this->belongsToMany(Student::class, 'group_id', 'id');
     }
 }

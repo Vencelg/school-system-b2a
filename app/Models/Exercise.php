@@ -12,7 +12,8 @@ class Exercise extends Model
 
     protected $fillable = [
         'name',
-        'ownComputer',
+        'own_computer',
+        'deadline_date',
     ];
 
     public function subject(): BelongsTo

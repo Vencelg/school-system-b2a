@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGarantsTable extends Migration
+class CreateStudentGroupTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateGarantsTable extends Migration
      */
     public function up()
     {
-        Schema::create('garants', function (Blueprint $table) {
+        Schema::create('student_group', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('teacher_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('group_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('sutdent_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateGarantsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('garants');
+        Schema::dropIfExists('student_group');
     }
 }

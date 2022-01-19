@@ -16,7 +16,8 @@ class CreateExercisesTable extends Migration
         Schema::create('exercises', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('ownComputer');
+            $table->boolean('own_computer');
+            $table->date('deadline_date');
             $table->timestamps();
         });
     }
