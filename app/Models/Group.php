@@ -17,11 +17,11 @@ class Group extends Model
 
     public function subjects() :BelongsToMany
     {
-        return $this->belongsToMany(Subject::class, 'group_id', 'id');
+        return $this->belongsToMany(Subject::class);
     }
 
     public function students() :BelongsToMany
     {
-        return $this->belongsToMany(Student::class, 'group_id', 'id');
+        return $this->belongsToMany(Student::class);
     }
 }

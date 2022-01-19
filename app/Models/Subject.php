@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -16,14 +17,14 @@ class Subject extends Model
         'name',
     ];
 
-    /*public function garant(): BelongsTo
+    public function garant(): BelongsTo
      {
          return $this->belongsTo(Garant::class, 'garant_id', 'id');
-     }*/
+     }
 
-    public function group(): BelongsTo
+    public function group(): BelongsToMany
     {
-        return $this->belongsTo(Group::class, 'group_id', 'id');
+        return $this->belongsToMany(Group::class);
     }
 
     public function lectures(): HasMany

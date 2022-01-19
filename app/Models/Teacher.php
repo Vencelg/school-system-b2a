@@ -14,8 +14,11 @@ class Teacher extends Model
         'titles',
         'firstname',
         'lastname',
-        'dateOfBirth',
+        'date_of_birth',
         'subject_id'
     ];
 
+    public function subject(): HasOne {
+        return $this->hasOne(Subject::class);
+    }
 }
