@@ -14,6 +14,6 @@ class ExercisesSeeder extends Seeder
      */
     public function run()
     {
-        Exercise::factory()->times(3)->create();
+        Exercise::factory()->times(5)->create();
     }
 }

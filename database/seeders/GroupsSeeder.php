@@ -15,6 +15,6 @@ class GroupsSeeder extends Seeder
      */
     public function run()
     {
-        Group::factory()->times(3)->create();
+        Group::factory()->times(5)->create();
     }
 }

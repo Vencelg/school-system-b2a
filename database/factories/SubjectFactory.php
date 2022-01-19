@@ -15,7 +15,6 @@ class SubjectFactory extends Factory
     {
         return [
             'name' => $this->faker->colorName,
-            'group_id' => $this->faker->numberBetween(1, 3),
         ];
     }
 }

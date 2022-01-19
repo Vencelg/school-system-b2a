@@ -15,7 +15,8 @@ class LectureFactory extends Factory
     {
         return [
             'name' => $this->faker->city,
-            'subject_id' => $this->faker->numberBetween(1,6),
+            'presentation_date' => $this->faker->dateTimeBetween('+0 days', '+2 years'),
+            'subject_id' => $this->faker->numberBetween(1,5),
         ];
     }
 }
