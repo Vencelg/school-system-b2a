@@ -17,9 +17,9 @@ class Subject extends Model
         'name',
     ];
 
-    public function garant(): BelongsTo
+    public function teacher(): BelongsTo
      {
-         return $this->belongsTo(Garant::class, 'garant_id', 'id');
+         return $this->belongsTo(Teacher::class);
      }
 
     public function group(): BelongsToMany

@@ -15,6 +15,7 @@ class SubjectFactory extends Factory
     {
         return [
             'name' => $this->faker->colorName,
+            'teacher_id' => $this->faker->unique->numberBetween(1,5)
         ];
     }
 }

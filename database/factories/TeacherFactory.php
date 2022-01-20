@@ -18,7 +18,6 @@ class TeacherFactory extends Factory
             'firstname' => $this->faker->firstName,
             'lastname' => $this->faker->lastName,
             'date_of_birth' => $this->faker->date,
-            'subject_id' => $this->faker->unique->numberBetween(1,5)
         ];
     }
 }
