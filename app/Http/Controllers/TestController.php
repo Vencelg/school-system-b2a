@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -12,10 +13,13 @@ class TestController extends Controller
     {
         $teachers = Teacher::all();
 
-        $test = Subject::with('teacher')->get();
+        $groups = Group::with('subjects')->get();
+        $subjectsWithLectures = Subject::with('lectures')->get();
+        $subjectsWithExercises = Subject::with('exercises')->get();
 
         return response()->json([
-            'teachers' => $test
+            'subjects' => $subjectsWithExercises
+            //'groups' => $groups
         ], 200);
     }
 }
