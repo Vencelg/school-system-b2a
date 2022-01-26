@@ -19,6 +19,8 @@ Route::prefix('students')->group(function () {
     Route::post('/', [\App\Http\Controllers\StudentController::class, 'store']);
     Route::put('/{id}', [\App\Http\Controllers\StudentController::class, 'edit']);
     Route::delete('/{id}', [\App\Http\Controllers\StudentController::class, 'delete']);
+    Route::get('/{id}', [\App\Http\Controllers\StudentController::class, 'show']);
+    Route::get('/{id}/schedule', [\App\Http\Controllers\StudentController::class, 'showSubjects']);
 });
 
 Route::prefix('subjects')->group(function () {

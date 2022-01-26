@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -66,6 +67,45 @@ class StudentController extends Controller
 
         return response()->json([
            'student' => $student
+        ], 200);
+    }
+
+    public function show($id) {
+        $student = Student::with('group')->where('id', $id)->get();
+
+        if (!$student) {
+            return response()->json([
+                'message' => 'Student does not exist'
+            ], 400);
+        }
+
+        return response()->json([
+            'student' => $student
+        ], 200);
+    }
+
+    public function showSubjects($id) {
+        $student = Student::with('group')->where('id', $id)->get();
+
+        if (!$student) {
+            return response()->json([
+                'message' => 'Student does not exist'
+            ], 400);
+        }
+
+        $groupId = $student[0]->group[0]->id;
+
+        $subjects = Subject::with('group')->get();
+        $schedule = [];
+
+        foreach ($subjects as $subject) {
+            if ($subject->group[0]->id == $groupId) {
+                array_push($schedule, $subject);
+            }
+        }
+
+        return response()->json([
+            'student' => $schedule
         ], 200);
     }
 
