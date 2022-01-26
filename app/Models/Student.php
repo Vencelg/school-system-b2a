@@ -42,6 +42,7 @@ class Student extends Model
         'lastname',
         'date_of_birth',
         'date_of_enroll',
+        'credits'
     ];
 
     public function group(): BelongsToMany
