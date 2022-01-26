@@ -40,7 +40,7 @@ class StudentController extends Controller
 
         return response()->json([
             'student' => $newStudent
-        ]);
+        ], 200);
     }
 
     public function edit(Request $request, $id): JsonResponse {
@@ -53,14 +53,20 @@ class StudentController extends Controller
             'group_id' => 'int'
         ]);
 
-        $student = Student::findOrFail($id);
+        $student = Student::find($id);
+
+        if (!$student) {
+            return response()->json([
+                'message' => 'Subject does not exist'
+            ], 400);
+        }
 
         $student->update($request->all());
         $student->save();
 
         return response()->json([
            'student' => $student
-        ]);
+        ], 200);
     }
 
     public function delete($id): JsonResponse {
@@ -69,13 +75,13 @@ class StudentController extends Controller
         if (!$student) {
             return response()->json([
                 'message' => 'Student does not exist'
-            ]);
+            ], 400);
         }
 
         $student->delete();
 
         return response()->json([
             'message' => 'Student deleted'
-        ]);
+        ], 200);
     }
 }

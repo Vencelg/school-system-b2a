@@ -29,7 +29,7 @@ class GroupController extends Controller
 
         return response()->json([
             'group' => $newGroup
-        ]);
+        ], 200);
     }
 
     public function edit(Request $request, $id): JsonResponse {
@@ -42,7 +42,7 @@ class GroupController extends Controller
         if (!$group) {
             return response()->json([
                 'message' => 'Group does not exist'
-            ]);
+            ], 400);
         }
 
         $group->update($request->all());
@@ -50,7 +50,7 @@ class GroupController extends Controller
 
         return response()->json([
             'group' => $group
-        ]);
+        ], 200);
     }
 
     public function delete($id): JsonResponse {
@@ -59,13 +59,13 @@ class GroupController extends Controller
         if (!$group) {
             return response()->json([
                 'message' => 'Group does not exist'
-            ]);
+            ], 400);
         }
 
         $group->delete();
 
         return response()->json([
             'message' => 'Group deleted'
-        ]);
+        ], 200);
     }
 }

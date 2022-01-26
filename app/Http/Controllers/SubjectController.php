@@ -35,7 +35,7 @@ class SubjectController extends Controller
 
         return response()->json([
             'subject' => $newSubject
-        ]);
+        ], 200);
     }
 
     public function edit(Request $request, $id): JsonResponse {
@@ -49,7 +49,7 @@ class SubjectController extends Controller
         if (!$subject) {
             return response()->json([
                 'message' => 'Subject does not exist'
-            ]);
+            ], 400);
         }
 
         $subject->update($request->all());
@@ -66,13 +66,13 @@ class SubjectController extends Controller
         if (!$subject) {
             return response()->json([
                 'message' => 'Subject does not exist'
-            ]);
+            ], 400);
         }
 
         $subject->delete();
 
         return response()->json([
             'message' => 'Subject deleted'
-        ]);
+        ], 200);
     }
 }
