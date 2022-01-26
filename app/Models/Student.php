@@ -51,8 +51,4 @@ class Student extends Model
         return $this->belongsToMany(Group::class);
     }
 
-    /*public function schedule(): HasManyThrough {
-        return $this->hasManyThrough(Subject::class, Group::class);
-    }*/
-
 }
