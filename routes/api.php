@@ -28,6 +28,7 @@ Route::prefix('subjects')->group(function () {
     Route::post('/', [\App\Http\Controllers\SubjectController::class, 'store']);
     Route::put('/{id}', [\App\Http\Controllers\SubjectController::class, 'edit']);
     Route::delete('/{id}', [\App\Http\Controllers\SubjectController::class, 'delete']);
+
 });
 
 Route::prefix('groups')->group(function () {
