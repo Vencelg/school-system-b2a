@@ -11,7 +11,7 @@ class SubjectController extends Controller
     public function index(): JsonResponse {
         $subjects = Subject::all();
 
-        return response()->json([
+        return $this->response([
             'subjects' => $subjects
         ], 200);
     }
