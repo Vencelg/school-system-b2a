@@ -3,20 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subject;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
-    public function index(): JsonResponse {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index()
+    {
         $subjects = Subject::all();
 
-        return $this->response([
+        return response()->json([
             'subjects' => $subjects
         ], 200);
     }
 
-    public function store(Request $request): JsonResponse {
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request)
+    {
         $this->validate($request, [
             'name' => 'string|required',
             'teacher_id' => 'integer|required',
@@ -38,7 +50,36 @@ class SubjectController extends Controller
         ], 200);
     }
 
-    public function edit(Request $request, $id): JsonResponse {
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show($id)
+    {
+        $subject = Subject::with(['group', 'teacher'])->where('id', $id)->get();
+
+        if (!$subject) {
+            return response()->json([
+                'message' => 'Student does not exist'
+            ], 400);
+        }
+
+        return response()->json([
+            'subject' => $subject
+        ], 200);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Request $request, $id)
+    {
         $this->validate($request, [
             'name' => 'string',
             'teacher_id' => 'integer',
@@ -60,7 +101,14 @@ class SubjectController extends Controller
         ]);
     }
 
-    public function delete($id): JsonResponse {
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy($id)
+    {
         $subject = Subject::find($id);
 
         if (!$subject) {

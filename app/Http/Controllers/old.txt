@@ -1,0 +1,276 @@
+class GroupController extends Controller
+{
+    public function index(): JsonResponse {
+        $groups = Group::all();
+
+        return response()->json([
+            'groups' => $groups
+        ], 200);
+    }
+
+    public function store(Request $request): JsonResponse {
+        $this->validate($request, [
+            'name' => 'string|required',
+        ]);
+
+        $newGroup = new Group([
+            'name' => $request->name,
+        ]);
+
+        $newGroup->save();
+
+        return response()->json([
+            'group' => $newGroup
+        ], 200);
+    }
+
+    public function edit(Request $request, $id): JsonResponse {
+        $this->validate($request, [
+            'name' => 'string',
+        ]);
+
+        $group = Group::find($id);
+
+        if (!$group) {
+            return response()->json([
+                'message' => 'Group does not exist'
+            ], 400);
+        }
+
+        $group->update($request->all());
+        $group->save();
+
+        return response()->json([
+            'group' => $group
+        ], 200);
+    }
+
+    public function delete($id): JsonResponse {
+        $group = Group::find($id);
+
+        if (!$group) {
+            return response()->json([
+                'message' => 'Group does not exist'
+            ], 400);
+        }
+
+        $group->delete();
+
+        return response()->json([
+            'message' => 'Group deleted'
+        ], 200);
+    }
+}
+/************************************************************************/
+class SubjectController extends Controller
+{
+    public function index(): JsonResponse {
+        $subjects = Subject::all();
+
+        return response()->json([
+            'subjects' => $subjects
+        ], 200);
+    }
+
+    public function store(Request $request): JsonResponse {
+        $this->validate($request, [
+            'name' => 'string|required',
+            'teacher_id' => 'integer|required',
+            'group_id' => 'integer|required',
+        ]);
+
+        $newSubject = new Subject([
+            'name' => $request->name,
+            'teacher_id' => $request->teacher_id,
+        ]);
+
+        $newSubject->save();
+        $newSubject->group()->attach($request->group_id, [
+            'subject_id' => $newSubject->id
+        ]);
+
+        return response()->json([
+            'subject' => $newSubject
+        ], 200);
+    }
+
+    public function edit(Request $request, $id): JsonResponse {
+        $this->validate($request, [
+            'name' => 'string',
+            'teacher_id' => 'integer',
+        ]);
+
+        $subject = Subject::find($id);
+
+        if (!$subject) {
+            return response()->json([
+                'message' => 'Subject does not exist'
+            ], 400);
+        }
+
+        $subject->update($request->all());
+        $subject->save();
+
+        return response()->json([
+            'subject' => $subject
+        ]);
+    }
+
+    public function delete($id): JsonResponse {
+        $subject = Subject::find($id);
+
+        if (!$subject) {
+            return response()->json([
+                'message' => 'Subject does not exist'
+            ], 400);
+        }
+
+        $subject->delete();
+
+        return response()->json([
+            'message' => 'Subject deleted'
+        ], 200);
+    }
+}
+/***********************************************************/
+class StudentController extends Controller
+{
+    public function index(): JsonResponse {
+        $students = Student::all();
+
+        return response()->json([
+            'students' => $students
+        ], 200);
+    }
+
+    public function store(Request $request): JsonResponse {
+        $this->validate($request, [
+            'firstname' => 'string|required',
+            'lastname' => 'string|required',
+            'date_of_birth' => 'date|required|date_format:Y-m-d',
+            'date_of_enroll' => 'date|required|date_format:Y-m-d',
+            'group_id' => 'int|required'
+        ]);
+
+        $newStudent = new Student([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'date_of_birth' => $request->date_of_birth,
+            'date_of_enroll' => $request->date_of_enroll,
+        ]);
+
+        $newStudent->save();
+        $newStudent->group()->attach($request->group_id, [
+            'student_id' => $newStudent->id
+        ]);
+
+        return response()->json([
+            'student' => $newStudent
+        ], 200);
+    }
+
+    public function edit(Request $request, $id): JsonResponse {
+        $this->validate($request, [
+            'firstname' => 'string',
+            'lastname' => 'string',
+            'date_of_birth' => 'date|date_format:Y-m-d',
+            'date_of_enroll' => 'date|date_format:Y-m-d',
+            'credits' => 'integer',
+            'group_id' => 'int'
+        ]);
+
+        $student = Student::find($id);
+
+        if (!$student) {
+            return response()->json([
+                'message' => 'Subject does not exist'
+            ], 400);
+        }
+
+        $student->update($request->all());
+        $student->save();
+
+        return response()->json([
+           'student' => $student
+        ], 200);
+    }
+
+    public function show($id) {
+        $student = Student::with('group')->where('id', $id)->get();
+
+        if (!$student) {
+            return response()->json([
+                'message' => 'Student does not exist'
+            ], 400);
+        }
+
+        return response()->json([
+            'student' => $student
+        ], 200);
+    }
+
+    public function showSubjects($id) {
+        $student = Student::with('group')->where('id', $id)->get();
+
+        if (!$student) {
+            return response()->json([
+                'message' => 'Student does not exist'
+            ], 400);
+        }
+
+        $groupId = $student[0]->group[0]->id;
+
+        $subjects = Subject::with('group')->get();
+        $schedule = [];
+
+        foreach ($subjects as $subject) {
+            if ($subject->group[0]->id == $groupId) {
+                array_push($schedule, $subject);
+            }
+        }
+
+        return response()->json([
+            'student' => $schedule
+        ], 200);
+    }
+
+    public function delete($id): JsonResponse {
+        $student = Student::find($id);
+
+        if (!$student) {
+            return response()->json([
+                'message' => 'Student does not exist'
+            ], 400);
+        }
+
+        $student->delete();
+
+        return response()->json([
+            'message' => 'Student deleted'
+        ], 200);
+    }
+}
+/********************************************************/
+Route::prefix('students')->group(function () {
+    Route::get('/', [\App\Http\Controllers\StudentController::class, 'index']);
+    Route::post('/', [\App\Http\Controllers\StudentController::class, 'store']);
+    Route::put('/{id}', [\App\Http\Controllers\StudentController::class, 'edit']);
+    Route::delete('/{id}', [\App\Http\Controllers\StudentController::class, 'delete']);
+    Route::get('/{id}', [\App\Http\Controllers\StudentController::class, 'show']);
+    Route::get('/{id}/schedule', [\App\Http\Controllers\StudentController::class, 'showSubjects']);
+});
+
+Route::prefix('subjects')->group(function () {
+    Route::get('/', [\App\Http\Controllers\SubjectController::class, 'index']);
+    Route::post('/', [\App\Http\Controllers\SubjectController::class, 'store']);
+    Route::put('/{id}', [\App\Http\Controllers\SubjectController::class, 'edit']);
+    Route::delete('/{id}', [\App\Http\Controllers\SubjectController::class, 'delete']);
+
+});
+
+Route::prefix('groups')->group(function () {
+    Route::get('/', [\App\Http\Controllers\GroupController::class, 'index']);
+    Route::post('/', [\App\Http\Controllers\GroupController::class, 'store']);
+    Route::put('/{id}', [\App\Http\Controllers\GroupController::class, 'edit']);
+    Route::delete('/{id}', [\App\Http\Controllers\GroupController::class, 'delete']);
+});

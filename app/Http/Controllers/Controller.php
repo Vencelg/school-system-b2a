@@ -18,7 +18,7 @@ class Controller extends BaseController
         ], $status);
     }*/
 
-    protected function response(array $response, int $status): JsonResponse {
+    /*protected function response(array $response, int $status): JsonResponse {
         return response()->json($response, $status);
-    }
+    }*/
 }
