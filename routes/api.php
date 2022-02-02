@@ -15,3 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::apiResources([
+    'groups' => \App\Http\Controllers\GroupController::class,
+    'subjects' => \App\Http\Controllers\SubjectController::class,
+    'students' => \App\Http\Controllers\StudentController::class,
+    'exercises' => \App\Http\Controllers\ExerciseController::class,
+    'lectures' => \App\Http\Controllers\LectureController::class,
+]);
+
+Route::get('students/{id}/subjects', [\App\Http\Controllers\StudentController::class, 'showSubjects']);

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreStudentRequest;
+use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -27,15 +30,9 @@ class StudentController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request)
     {
-        $this->validate($request, [
-            'firstname' => 'string|required',
-            'lastname' => 'string|required',
-            'date_of_birth' => 'date|required|date_format:Y-m-d',
-            'date_of_enroll' => 'date|required|date_format:Y-m-d',
-            'group_id' => 'int|required'
-        ]);
+        $validation = $request->validated();
 
         $newStudent = new Student([
             'firstname' => $request->firstname,
@@ -82,16 +79,9 @@ class StudentController extends Controller
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateStudentRequest $request, $id)
     {
-        $this->validate($request, [
-            'firstname' => 'string',
-            'lastname' => 'string',
-            'date_of_birth' => 'date|date_format:Y-m-d',
-            'date_of_enroll' => 'date|date_format:Y-m-d',
-            'credits' => 'integer',
-            'group_id' => 'int'
-        ]);
+        $validation = $request->validated();
 
         $student = Student::find($id);
 
@@ -129,6 +119,32 @@ class StudentController extends Controller
 
         return response()->json([
             'message' => 'Student deleted'
+        ], 200);
+    }
+
+    public function showSubjects($id)
+    {
+        $student = Student::with('group')->where('id', $id)->get();
+
+        if (!$student) {
+            return response()->json([
+                'message' => 'Student does not exist'
+            ], 400);
+        }
+
+        $groupId = $student[0]->group[0]->id;
+
+        $subjects = Subject::with('group')->get();
+        $schedule = [];
+
+        foreach ($subjects as $subject) {
+            if ($subject->group[0]->id == $groupId) {
+                array_push($schedule, $subject);
+            }
+        }
+
+        return response()->json([
+            'subjects' => $schedule
         ], 200);
     }
 }

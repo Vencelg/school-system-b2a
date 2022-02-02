@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreGroupRequest;
+use App\Http\Requests\UpdateGroupRequest;
 use App\Models\Group;
 use Illuminate\Http\Request;
 
@@ -27,14 +29,13 @@ class GroupController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreGroupRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'string|required',
-        ]);
+        $validation = $request->validated();
 
         $newGroup = new Group([
             'name' => $request->name,
+            'own_computer' => $request->own_computer
         ]);
 
         $newGroup->save();
@@ -56,7 +57,7 @@ class GroupController extends Controller
 
         if (!$group) {
             return response()->json([
-                'message' => 'Student does not exist'
+                'message' => 'Group does not exist'
             ], 400);
         }
 
@@ -72,11 +73,9 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateGroupRequest $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'string',
-        ]);
+        $validation = $request->validated();
 
         $group = Group::find($id);
 

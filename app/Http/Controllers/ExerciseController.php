@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSubjectRequest;
-use App\Http\Requests\UpdateSubjectRequest;
-use App\Models\Subject;
+use App\Http\Requests\StoreExerciseRequest;
+use App\Http\Requests\UpdateExerciseRequest;
+use App\Models\Exercise;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
-class SubjectController extends Controller
+class ExerciseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +17,10 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects = Subject::all();
+        $exercises = Exercise::all();
 
         return response()->json([
-            'subjects' => $subjects
+            'exercises' => $exercises
         ], 200);
     }
 
@@ -29,22 +30,20 @@ class SubjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(StoreSubjectRequest $request)
+    public function store(StoreExerciseRequest $request)
     {
         $validation = $request->validated();
 
-        $newSubject = new Subject([
+        $newExercise = new Exercise([
             'name' => $request->name,
-            'teacher_id' => $request->teacher_id,
+            'own_computer' => $request->own_computer,
+            'deadline_date' => $request->deadline_date
         ]);
 
-        $newSubject->save();
-        $newSubject->group()->attach($request->group_id, [
-            'subject_id' => $newSubject->id
-        ]);
+        $newExercise->save();
 
         return response()->json([
-            'subject' => $newSubject
+            'exercise' => $newExercise
         ], 200);
     }
 
@@ -56,16 +55,16 @@ class SubjectController extends Controller
      */
     public function show($id)
     {
-        $subject = Subject::with(['group', 'teacher'])->where('id', $id)->get();
+        $exercise = Exercise::find($id);
 
-        if (!$subject) {
+        if (!$exercise) {
             return response()->json([
-                'message' => 'Student does not exist'
+                'message' => 'Exercise does not exist'
             ], 400);
         }
 
         return response()->json([
-            'subject' => $subject
+            'exercise' => $exercise
         ], 200);
     }
 
@@ -76,24 +75,24 @@ class SubjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateSubjectRequest $request, $id)
+    public function update(UpdateExerciseRequest $request, $id)
     {
         $validation = $request->validated();
 
-        $subject = Subject::find($id);
+        $exercise = Exercise::find($id);
 
-        if (!$subject) {
+        if (!$exercise) {
             return response()->json([
-                'message' => 'Subject does not exist'
+                'message' => 'Exercise does not exist'
             ], 400);
         }
 
-        $subject->update($request->all());
-        $subject->save();
+        $exercise->update($request->all());
+        $exercise->save();
 
         return response()->json([
-            'subject' => $subject
-        ]);
+            'exercise' => $exercise
+        ], 200);
     }
 
     /**
@@ -104,18 +103,18 @@ class SubjectController extends Controller
      */
     public function destroy($id)
     {
-        $subject = Subject::find($id);
+        $exercise = Exercise::find($id);
 
-        if (!$subject) {
+        if (!$exercise) {
             return response()->json([
-                'message' => 'Subject does not exist'
+                'message' => 'Exercise does not exist'
             ], 400);
         }
 
-        $subject->delete();
+        $exercise->delete();
 
         return response()->json([
-            'message' => 'Subject deleted'
+            'message' => 'Exercise deleted'
         ], 200);
     }
 }
