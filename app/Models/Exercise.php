@@ -38,6 +38,7 @@ class Exercise extends Model
         'name',
         'own_computer',
         'deadline_date',
+        'credits_to_give',
         'subject_id',
     ];
 

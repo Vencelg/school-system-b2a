@@ -24,3 +24,4 @@ Route::apiResources([
 ]);
 
 Route::get('students/{id}/subjects', [\App\Http\Controllers\StudentController::class, 'showSubjects']);
+Route::get('exercises/{studentId}/complete/{exerciseId}', [\App\Http\Controllers\ExerciseController::class, 'completeExercise']);

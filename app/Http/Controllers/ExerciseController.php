@@ -118,4 +118,41 @@ class ExerciseController extends Controller
             'message' => 'Exercise deleted'
         ], 200);
     }
+
+    /**
+     * Complete the specified exercise.
+     *
+     * @param  int  $studentId
+     * @param  int  $exerciseId
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function completeExercise(int $studentId, int $exerciseId) {
+        $student = Student::find($studentId);
+        $exercise = Exercise::find($exerciseId);
+
+        if (!$student) {
+            return response()->json([
+                'message' => 'Student does not exist'
+            ], 400);
+        }
+
+        if (!$exercise) {
+            return response()->json([
+                'message' => 'Exercise does not exist'
+            ], 400);
+        }
+
+        $student->update([
+            'credits' => $student->credits + $exercise->credits_to_give,
+        ]);
+        $student->save();
+
+        $exercise->delete();
+
+        $studentName = $student->firstname.' '.$student->lastname;
+
+        return response()->json([
+            'message' => 'Student '.$studentName.' completed the '.$exercise->name.' exercise'
+        ], 200);
+    }
 }
