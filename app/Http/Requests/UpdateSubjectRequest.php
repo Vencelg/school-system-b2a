@@ -25,7 +25,7 @@ class UpdateSubjectRequest extends FormRequest
     {
         return [
             'name' => 'string',
-            'teacher_id' => 'integer',
+            'teacher_id' => 'integer|exists:App\Models\Subject,id',
         ];
     }
 }

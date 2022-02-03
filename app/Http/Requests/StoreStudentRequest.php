@@ -26,9 +26,9 @@ class StoreStudentRequest extends FormRequest
         return [
             'firstname' => 'string|required',
             'lastname' => 'string|required',
-            'date_of_birth' => 'date|required|date_format:Y-m-d',
-            'date_of_enroll' => 'date|required|date_format:Y-m-d',
-            'group_id' => 'int|required'
+            'date_of_birth' => 'date|required|date_format:Y-m-d|before_or_equal:today',
+            'date_of_enroll' => 'date|required|date_format:Y-m-d|before_or_equal:today',
+            'group_id' => 'int|required|exists:App\Models\Group,id'
         ];
     }
 }

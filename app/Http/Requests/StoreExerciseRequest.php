@@ -25,8 +25,9 @@ class StoreExerciseRequest extends FormRequest
     {
         return [
             'name' => 'string|required',
-            'own_computer' => 'bool|required',
-            'deadline_date' => 'date|required|date_format:Y-m-d'
+            'own_computer' => 'boolean|required',
+            'deadline_date' => 'date|required|after_or_equal:today|date_format:Y-m-d',
+            'subject_id' => 'int|required|exists:App\Models\Subject,id'
         ];
     }
 }

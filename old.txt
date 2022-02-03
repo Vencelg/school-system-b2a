@@ -274,3 +274,7 @@ Route::prefix('groups')->group(function () {
     Route::put('/{id}', [\App\Http\Controllers\GroupController::class, 'edit']);
     Route::delete('/{id}', [\App\Http\Controllers\GroupController::class, 'delete']);
 });
+******************************************************
+
+
+https://laravel.com/docs/8.x/validation#available-validation-rules

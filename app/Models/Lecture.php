@@ -34,7 +34,8 @@ class Lecture extends Model
 
     protected $fillable = [
         'name',
-        'presentation_date'
+        'presentation_date',
+        'subject_id',
     ];
 
     public function subject(): BelongsTo

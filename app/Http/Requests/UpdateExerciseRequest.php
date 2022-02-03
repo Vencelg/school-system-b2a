@@ -25,8 +25,8 @@ class UpdateExerciseRequest extends FormRequest
     {
         return [
             'name' => 'string',
-            'own_computer' => 'bool',
-            'deadline_date' => 'date|date_format:Y-m-d'
+            'own_computer' => 'boolean',
+            'deadline_date' => 'date|date_format:Y-m-d|after_or_equal:today'
         ];
     }
 }

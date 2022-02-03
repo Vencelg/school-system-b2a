@@ -37,7 +37,8 @@ class ExerciseController extends Controller
         $newExercise = new Exercise([
             'name' => $request->name,
             'own_computer' => $request->own_computer,
-            'deadline_date' => $request->deadline_date
+            'deadline_date' => $request->deadline_date,
+            'subject_id' => $request->subject_id,
         ]);
 
         $newExercise->save();

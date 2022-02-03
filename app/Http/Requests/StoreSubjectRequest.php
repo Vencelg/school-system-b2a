@@ -25,8 +25,8 @@ class StoreSubjectRequest extends FormRequest
     {
         return [
             'name' => 'string|required',
-            'teacher_id' => 'integer|required',
-            'group_id' => 'integer|required',
+            'teacher_id' => 'integer|required|exists:App\Models\Teacher,id',
+            'group_id' => 'integer|required|exists:App\Models\Group,id',
         ];
     }
 }

@@ -38,6 +38,7 @@ class Exercise extends Model
         'name',
         'own_computer',
         'deadline_date',
+        'subject_id',
     ];
 
     public function subject(): BelongsTo

@@ -24,7 +24,9 @@ class UpdateLectureRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'string',
+            'presentation_date' => 'date|after_or_equal:today|date_format:Y-m-d',
+            'subject_id' => 'int|exists:App\Models\Subject,id'
         ];
     }
 }

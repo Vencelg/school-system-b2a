@@ -26,10 +26,10 @@ class UpdateStudentRequest extends FormRequest
         return [
             'firstname' => 'string',
             'lastname' => 'string',
-            'date_of_birth' => 'date|date_format:Y-m-d',
-            'date_of_enroll' => 'date|date_format:Y-m-d',
+            'date_of_birth' => 'date|date_format:Y-m-d|before_or_equal:today',
+            'date_of_enroll' => 'date|date_format:Y-m-d|before_or_equal:today',
             'credits' => 'integer',
-            'group_id' => 'int'
+            'group_id' => 'int|exists:App\Models\Subject,id'
         ];
     }
 }
