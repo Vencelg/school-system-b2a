@@ -21,7 +21,9 @@ Route::apiResources([
     'students' => \App\Http\Controllers\StudentController::class,
     'exercises' => \App\Http\Controllers\ExerciseController::class,
     'lectures' => \App\Http\Controllers\LectureController::class,
+    'prerequisites' => \App\Http\Controllers\PrerequisiteController::class,
 ]);
 
 Route::get('students/{id}/subjects', [\App\Http\Controllers\StudentController::class, 'showSubjects']);
 Route::get('exercises/{studentId}/complete/{exerciseId}', [\App\Http\Controllers\ExerciseController::class, 'completeExercise']);
+Route::get('exercises/{studentId}/complete/{prerequisiteId}', [\App\Http\Controllers\PrerequisiteController::class, 'completePrerequisite']);

@@ -62,4 +62,9 @@ class Subject extends Model
     {
         return $this->hasMany(Exercise::class);
     }
+
+    public function prerequisite(): HasMany
+    {
+        return $this->hasMany(Prerequisite::class);
+    }
 }
