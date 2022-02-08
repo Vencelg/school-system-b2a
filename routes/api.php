@@ -25,5 +25,7 @@ Route::apiResources([
 ]);
 
 Route::get('students/{id}/subjects', [\App\Http\Controllers\StudentController::class, 'showSubjects']);
-Route::get('exercises/{studentId}/complete/{exerciseId}', [\App\Http\Controllers\ExerciseController::class, 'completeExercise']);
-Route::get('exercises/{studentId}/complete/{prerequisiteId}', [\App\Http\Controllers\PrerequisiteController::class, 'completePrerequisite']);
+Route::post('students/graduate', [\App\Http\Controllers\StudentController::class, 'graduate'])->middleware(['hasNoPrerequisites', 'hasEnoughCredits']);
+Route::post('lectures/attend', [\App\Http\Controllers\LectureController::class, 'attendLecture']);
+Route::post('exercises/complete', [\App\Http\Controllers\ExerciseController::class, 'completeExercise']);
+Route::post('prerequisites/complete', [\App\Http\Controllers\PrerequisiteController::class, 'completePrerequisite']);

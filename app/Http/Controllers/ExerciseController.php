@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CompleteExerciseRequest;
 use App\Http\Requests\StoreExerciseRequest;
 use App\Http\Requests\UpdateExerciseRequest;
 use App\Models\Exercise;
@@ -126,7 +127,10 @@ class ExerciseController extends Controller
      * @param  int  $exerciseId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function completeExercise(int $studentId, int $exerciseId) {
+    public function completeExercise(CompleteExerciseRequest $request) {
+        $studentId = $request->student_id;
+        $exerciseId = $request->exercise_id;
+
         $student = Student::find($studentId);
         $exercise = Exercise::find($exerciseId);
 

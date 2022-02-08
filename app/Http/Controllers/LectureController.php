@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AttendLectureRequest;
 use App\Http\Requests\StoreLectureRequest;
 use App\Http\Requests\UpdateLectureRequest;
 use App\Models\Lecture;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class LectureController extends Controller
@@ -113,6 +115,34 @@ class LectureController extends Controller
 
         return response()->json([
             'message' => 'Lecture deleted'
+        ], 200);
+    }
+
+    public function attendLecture(AttendLectureRequest $request) {
+        $studentId = $request->student_id;
+        $lectureId = $request->lecture_id;
+
+        $student = Student::find($studentId);
+        $lecture = Lecture::find($lectureId);
+
+        if (!$student) {
+            return response()->json([
+                'message' => 'Student does not exist'
+            ], 400);
+        }
+
+        if (!$lecture) {
+            return response()->json([
+                'message' => 'Lecture does not exist'
+            ], 400);
+        }
+
+        $lecture->delete();
+
+        $studentName = $student->firstname.' '.$student->lastname;
+
+        return response()->json([
+            'message' => 'Student '.$studentName.' completed the '.$lecture->name.' lecture'
         ], 200);
     }
 }

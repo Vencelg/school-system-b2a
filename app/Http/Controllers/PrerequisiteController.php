@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CompletePrerequisiteRequest;
 use App\Http\Requests\StorePrerequisiteRequest;
 use App\Http\Requests\UpdatePrerequisiteRequest;
 use App\Models\Prerequisite;
@@ -119,7 +120,11 @@ class PrerequisiteController extends Controller
         ], 200);
     }
 
-    public function completePrerequisite(int $studentId, int $prerequisiteId) {
+    public function completePrerequisite(CompletePrerequisiteRequest $request) {
+        $studentId = $request->student_id;
+        $prerequisiteId = $request->prerequisite_id;
+
+
         $student = Student::find($studentId);
         $prerequisite = Prerequisite::find($prerequisiteId);
 

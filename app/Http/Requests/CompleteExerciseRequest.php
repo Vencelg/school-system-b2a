@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateSubjectRequest extends FormRequest
+class CompleteExerciseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class UpdateSubjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'string',
-            'teacher_id' => 'integer|exists:App\Models\Subject,id',
-            'group_id' => 'integer|exists:App\Models\Group,id',
+            'student_id' => 'int|required|exists:App\Models\Student,id',
+            'exercise_id' => 'int|required|exists:App\Models\Exercise,id',
         ];
     }
 }

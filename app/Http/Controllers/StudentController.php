@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStudentRequest;
+use App\Http\Requests\StudendGraduateRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
 use App\Models\Subject;
@@ -42,9 +43,7 @@ class StudentController extends Controller
         ]);
 
         $newStudent->save();
-        $newStudent->group()->attach($request->group_id, [
-            'student_id' => $newStudent->id
-        ]);
+        $newStudent->group()->attach($request->group_id);
 
         return response()->json([
             'student' => $newStudent
@@ -90,6 +89,13 @@ class StudentController extends Controller
                 'message' => 'Subject does not exist'
             ], 400);
         }
+        $requestGroupId = $request->group_id;
+
+        if ($requestGroupId) {
+            $student->group()->detach();
+
+            $student->group()->attach($requestGroupId);
+        }
 
         $student->update($request->all());
         $student->save();
@@ -132,7 +138,14 @@ class StudentController extends Controller
             ], 400);
         }
 
+        if (empty($student[0]->group[0])) {
+            return response()->json([
+                'message' => 'bruh'
+            ], 400);
+        }
+
         $groupId = $student[0]->group[0]->id;
+
 
         $subjects = Subject::with('group')->get();
         $schedule = [];
@@ -145,6 +158,19 @@ class StudentController extends Controller
 
         return response()->json([
             'subjects' => $schedule
+        ], 200);
+    }
+
+    public function graduate(StudendGraduateRequest $request)
+    {
+        $student = Student::find($request->student_id);
+
+        $student->grade += 1;
+        $student->credits -= 30;
+        $student->save();
+
+        return response()->json([
+            'student' => $student
         ], 200);
     }
 }

@@ -88,6 +88,14 @@ class SubjectController extends Controller
             ], 400);
         }
 
+        $requestGroupId = $request->group_id;
+
+        if ($requestGroupId) {
+            $subject->group()->detach();
+
+            $subject->group()->attach($requestGroupId);
+        }
+
         $subject->update($request->all());
         $subject->save();
 

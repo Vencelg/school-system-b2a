@@ -14,7 +14,7 @@ class PrerequisitesSeeder extends Seeder
      */
     public function run()
     {
-        Prerequisite::factory()->times(5)->create();
+        Prerequisite::factory()->times(2)->create();
 
     }
 }

@@ -52,7 +52,7 @@ class Student extends Model
         return $this->belongsToMany(Group::class);
     }
 
-    public function prerequisite(): HasMany
+    public function prerequisites(): HasMany
     {
         return $this->hasMany(Prerequisite::class);
     }
