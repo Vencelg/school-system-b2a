@@ -1,0 +1,1333 @@
+{
+	"info": {
+		"_postman_id": "24007d8a-efbf-48fc-b0c3-0f7af4ee125e",
+		"name": "school-system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "all students",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}students",
+							"host": [
+								"{{url}}students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show student",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}students/1",
+							"host": [
+								"{{url}}students"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "student subjects",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}students/1/subjects",
+							"host": [
+								"{{url}}students"
+							],
+							"path": [
+								"1",
+								"subjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "student graduate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "student_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}students/graduate",
+							"host": [
+								"{{url}}students"
+							],
+							"path": [
+								"graduate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add student",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "firstname",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "date_of_enroll",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "group_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}students",
+							"host": [
+								"{{url}}students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update student",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstname",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "date_of_enroll",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "group_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}students",
+							"host": [
+								"{{url}}students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete student",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}students",
+							"host": [
+								"{{url}}students"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Subjects",
+			"item": [
+				{
+					"name": "all subjects",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}subjects",
+							"host": [
+								"{{url}}subjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show subject",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}subjects/1",
+							"host": [
+								"{{url}}subjects"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add subjects",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "teacher_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "group_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}subjects",
+							"host": [
+								"{{url}}subjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update subject",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "teacher_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "group_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}subjects/1",
+							"host": [
+								"{{url}}subjects"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete subject",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}subjects/1",
+							"host": [
+								"{{url}}subjects"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teachers",
+			"item": [
+				{
+					"name": "all teachers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}teachers",
+							"host": [
+								"{{url}}teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show teacher",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}teachers/1",
+							"host": [
+								"{{url}}teachers"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add teacher",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "titles",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}teachers",
+							"host": [
+								"{{url}}teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update teacher",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "titles",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}teachers/1",
+							"host": [
+								"{{url}}teachers"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete teacher",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}teachers",
+							"host": [
+								"{{url}}teachers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Groups",
+			"item": [
+				{
+					"name": "all groups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}groups",
+							"host": [
+								"{{url}}groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show groups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}groups/1",
+							"host": [
+								"{{url}}groups"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add groups",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}groups",
+							"host": [
+								"{{url}}groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update groups",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}groups",
+							"host": [
+								"{{url}}groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete groups",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}groups/1",
+							"host": [
+								"{{url}}groups"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Prerequisites",
+			"item": [
+				{
+					"name": "all prerequisites",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}prerequisites",
+							"host": [
+								"{{url}}prerequisites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show prerequisites",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}prerequisites/2",
+							"host": [
+								"{{url}}prerequisites"
+							],
+							"path": [
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "complete prerequisite",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "student_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "prerequisite_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}prerequisites/complete",
+							"host": [
+								"{{url}}prerequisites"
+							],
+							"path": [
+								"complete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add prerequisites",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deadline_date",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "student_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}prerequisites",
+							"host": [
+								"{{url}}prerequisites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update prerequisites",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deadline_date",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "student_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}prerequisites",
+							"host": [
+								"{{url}}prerequisites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete prerequisites",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}prerequisites/1",
+							"host": [
+								"{{url}}prerequisites"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Exercises",
+			"item": [
+				{
+					"name": "all exercises",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}exercises",
+							"host": [
+								"{{url}}exercises"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show exercises",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}exercises/1",
+							"host": [
+								"{{url}}exercises"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "complete exercise",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "student_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "exercise_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}exercises/complete",
+							"host": [
+								"{{url}}exercises"
+							],
+							"path": [
+								"complete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add exercises",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "own_computer",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deadline_date",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "credits_to_give",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "subject_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}exercises",
+							"host": [
+								"{{url}}exercises"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update exercises",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "own_computer",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deadline_date",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "credits_to_give",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}exercises/1",
+							"host": [
+								"{{url}}exercises"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete exercises",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}exercises/1",
+							"host": [
+								"{{url}}exercises"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lectures",
+			"item": [
+				{
+					"name": "all lectures",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}lectures",
+							"host": [
+								"{{url}}lectures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show exercises",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}lectures/1",
+							"host": [
+								"{{url}}lectures"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "attend lecture",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "student_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "lecture_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}lectures/attend",
+							"host": [
+								"{{url}}lectures"
+							],
+							"path": [
+								"attend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add exercises",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "firstname",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "date_of_enroll",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "group_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}lectures",
+							"host": [
+								"{{url}}lectures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update exercises",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "subject_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}lectures",
+							"host": [
+								"{{url}}lectures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete exercises",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}lectures",
+							"host": [
+								"{{url}}lectures"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://127.0.0.1:8000/api/",
+			"type": "string"
+		}
+	]
+}
