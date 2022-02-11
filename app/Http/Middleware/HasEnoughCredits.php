@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Requests\StudentGraduateRequest;
 use App\Models\Student;
 use Closure;
 use Illuminate\Http\Request;
@@ -19,6 +20,12 @@ class HasEnoughCredits
     public function handle(Request $request, Closure $next)
     {
         $student = Student::find($request->student_id);
+
+        if (!$student) {
+            return response()->json([
+                'error' => 'Student does not exist',
+            ]);
+        }
 
         if ($student->credits < 30) {
             return response()->json([

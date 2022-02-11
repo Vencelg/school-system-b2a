@@ -86,7 +86,7 @@ class StudentController extends Controller
 
         if (!$student) {
             return response()->json([
-                'message' => 'Subject does not exist'
+                'message' => 'Teacher does not exist'
             ], 400);
         }
         $requestGroupId = $request->group_id;
@@ -140,7 +140,7 @@ class StudentController extends Controller
 
         if (empty($student[0]->group[0])) {
             return response()->json([
-                'message' => 'bruh'
+                'message' => 'Student has no subjects'
             ], 400);
         }
 

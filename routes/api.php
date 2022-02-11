@@ -19,6 +19,7 @@ Route::apiResources([
     'groups' => \App\Http\Controllers\GroupController::class,
     'subjects' => \App\Http\Controllers\SubjectController::class,
     'students' => \App\Http\Controllers\StudentController::class,
+    'teachers' => \App\Http\Controllers\TeacherController::class,
     'exercises' => \App\Http\Controllers\ExerciseController::class,
     'lectures' => \App\Http\Controllers\LectureController::class,
     'prerequisites' => \App\Http\Controllers\PrerequisiteController::class,

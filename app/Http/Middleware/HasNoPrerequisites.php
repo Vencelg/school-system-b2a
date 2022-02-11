@@ -21,10 +21,16 @@ class HasNoPrerequisites
     {
         $student = Student::with('prerequisites')->where('id', $request->student_id)->get();
 
+        if (!$student) {
+            return response()->json([
+                'error' => 'Student does not exist',
+            ]);
+        }
+
         if (!empty($student[0]->prerequisites[0])) {
             return response()->json([
-                //'error' => 'Student has to finish his prerequisites before graduation',
-                'error' => $student[0]->prerequisites,
+                'error' => 'Student has to finish his prerequisites before graduation',
+                //'error' => $student[0]->prerequisites,
             ]);
         }
 

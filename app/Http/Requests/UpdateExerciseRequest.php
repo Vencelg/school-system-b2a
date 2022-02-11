@@ -26,7 +26,9 @@ class UpdateExerciseRequest extends FormRequest
         return [
             'name' => 'string',
             'own_computer' => 'boolean',
-            'deadline_date' => 'date|date_format:Y-m-d|after_or_equal:today'
+            'deadline_date' => 'date|after_or_equal:today|date_format:Y-m-d',
+            'credits_to_give' =>'int',
+            'subject_id' => 'int|exists:App\Models\Subject,id'
         ];
     }
 }
