@@ -20,7 +20,7 @@ class GroupSubjectSeeder extends Seeder
                 'subject_id' => $i
             ];
 
-            DB::table('group_student')->insert($data);
+            DB::table('group_subject')->insert($data);
         }
     }
 }
