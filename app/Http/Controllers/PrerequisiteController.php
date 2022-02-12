@@ -59,7 +59,7 @@ class PrerequisiteController extends Controller
     {
         $prerequisite = Prerequisite::find($id);
 
-        if (!$prerequisite) {
+        if (!($prerequisite instanceof Prerequisite)) {
             return response()->json([
                 'message' => 'Prerequisite does not exist'
             ], 400);
@@ -83,7 +83,7 @@ class PrerequisiteController extends Controller
 
         $prerequisite = Prerequisite::find($id);
 
-        if (!$prerequisite) {
+        if (!($prerequisite instanceof Prerequisite)) {
             return response()->json([
                 'message' => 'Prerequisite does not exist'
             ], 400);
@@ -107,7 +107,7 @@ class PrerequisiteController extends Controller
     {
         $prerequisite = Prerequisite::find($id);
 
-        if (!$prerequisite) {
+        if (!($prerequisite instanceof Prerequisite)) {
             return response()->json([
                 'message' => 'Prerequisite does not exist'
             ], 400);
@@ -128,13 +128,13 @@ class PrerequisiteController extends Controller
         $student = Student::find($studentId);
         $prerequisite = Prerequisite::find($prerequisiteId);
 
-        if (!$student) {
+        if (!($student instanceof Student)) {
             return response()->json([
                 'message' => 'Student does not exist'
             ], 400);
         }
 
-        if (!$prerequisite) {
+        if (!($prerequisite instanceof Prerequisite)) {
             return response()->json([
                 'message' => 'Prerequisite does not exist'
             ], 400);

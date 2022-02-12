@@ -55,7 +55,7 @@ class GroupController extends Controller
     {
         $group = Group::find($id);
 
-        if (!$group) {
+        if (!($group instanceof Group)) {
             return response()->json([
                 'message' => 'Group does not exist'
             ], 400);
@@ -79,7 +79,7 @@ class GroupController extends Controller
 
         $group = Group::find($id);
 
-        if (!$group) {
+        if (!($group instanceof Group)) {
             return response()->json([
                 'message' => 'Group does not exist'
             ], 400);
@@ -103,7 +103,7 @@ class GroupController extends Controller
     {
         $group = Group::find($id);
 
-        if (!$group) {
+        if (!($group instanceof Group)) {
             return response()->json([
                 'message' => 'Group does not exist'
             ], 400);

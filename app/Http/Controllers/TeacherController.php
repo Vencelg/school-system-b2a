@@ -58,7 +58,7 @@ class TeacherController extends Controller
     {
         $teacher = Teacher::with('subject')->where('id', $id)->get();
 
-        if (!$teacher) {
+        if (!($teacher instanceof Teacher)) {
             return response()->json([
                 'message' => 'Teacher does not exist'
             ], 400);
@@ -82,7 +82,7 @@ class TeacherController extends Controller
 
         $teacher = Teacher::find($id);
 
-        if (!$teacher) {
+        if (!($teacher instanceof Teacher)) {
             return response()->json([
                 'message' => 'Teacher does not exist'
             ], 400);
@@ -106,7 +106,7 @@ class TeacherController extends Controller
     {
         $teacher = Teacher::find($id);
 
-        if (!$teacher) {
+        if (!($teacher instanceof Teacher)) {
             return response()->json([
                 'message' => 'Teacher does not exist'
             ], 400);

@@ -59,7 +59,7 @@ class ExerciseController extends Controller
     {
         $exercise = Exercise::find($id);
 
-        if (!$exercise) {
+        if (!($exercise instanceof Exercise)) {
             return response()->json([
                 'message' => 'Exercise does not exist'
             ], 400);
@@ -83,7 +83,7 @@ class ExerciseController extends Controller
 
         $exercise = Exercise::find($id);
 
-        if (!$exercise) {
+        if (!($exercise instanceof Exercise)) {
             return response()->json([
                 'message' => 'Exercise does not exist'
             ], 400);
@@ -107,7 +107,7 @@ class ExerciseController extends Controller
     {
         $exercise = Exercise::find($id);
 
-        if (!$exercise) {
+        if (!($exercise instanceof Exercise)) {
             return response()->json([
                 'message' => 'Exercise does not exist'
             ], 400);
@@ -132,15 +132,14 @@ class ExerciseController extends Controller
         $exerciseId = $request->exercise_id;
 
         $student = Student::find($studentId);
-        $exercise = Exercise::find($exerciseId);
-
-        if (!$student) {
+        if (!($student instanceof Student)) {
             return response()->json([
                 'message' => 'Student does not exist'
             ], 400);
         }
 
-        if (!$exercise) {
+        $exercise = Exercise::find($exerciseId);
+        if (!($exercise instanceof Exercise)) {
             return response()->json([
                 'message' => 'Exercise does not exist'
             ], 400);

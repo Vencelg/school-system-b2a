@@ -58,7 +58,7 @@ class SubjectController extends Controller
     {
         $subject = Subject::with(['group', 'teacher'])->where('id', $id)->get();
 
-        if (!$subject) {
+        if (!($subject instanceof Subject)) {
             return response()->json([
                 'message' => 'Student does not exist'
             ], 400);
@@ -82,7 +82,7 @@ class SubjectController extends Controller
 
         $subject = Subject::find($id);
 
-        if (!$subject) {
+        if (!$subject instanceof Subject) {
             return response()->json([
                 'message' => 'Subject does not exist'
             ], 400);
@@ -114,7 +114,7 @@ class SubjectController extends Controller
     {
         $subject = Subject::find($id);
 
-        if (!$subject) {
+        if (!($subject instanceof Subject)) {
             return response()->json([
                 'message' => 'Subject does not exist'
             ], 400);

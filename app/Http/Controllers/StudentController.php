@@ -60,7 +60,7 @@ class StudentController extends Controller
     {
         $student = Student::with('group')->where('id', $id)->get();
 
-        if (!$student) {
+        if (!($student instanceof Student)) {
             return response()->json([
                 'message' => 'Student does not exist'
             ], 400);
@@ -84,7 +84,7 @@ class StudentController extends Controller
 
         $student = Student::find($id);
 
-        if (!$student) {
+        if (!($student instanceof Student)) {
             return response()->json([
                 'message' => 'Teacher does not exist'
             ], 400);
@@ -115,7 +115,7 @@ class StudentController extends Controller
     {
         $student = Student::find($id);
 
-        if (!$student) {
+        if (!($student instanceof Student)) {
             return response()->json([
                 'message' => 'Student does not exist'
             ], 400);
@@ -132,13 +132,13 @@ class StudentController extends Controller
     {
         $student = Student::with('group')->where('id', $id)->get();
 
-        if (!$student) {
+        if (!($student instanceof Student)) {
             return response()->json([
                 'message' => 'Student does not exist'
             ], 400);
         }
 
-        if (empty($student[0]->group[0])) {
+        if ($student[0]->group[0]) {
             return response()->json([
                 'message' => 'Student has no subjects'
             ], 400);
@@ -164,6 +164,12 @@ class StudentController extends Controller
     public function graduate(StudendGraduateRequest $request)
     {
         $student = Student::find($request->student_id);
+
+        if (!($student instanceof Student)) {
+            return response()->json([
+                'message' => 'Student does not exist'
+            ], 400);
+        }
 
         $student->grade += 1;
         $student->credits -= 30;

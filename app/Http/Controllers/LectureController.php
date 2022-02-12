@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateLectureRequest;
 use App\Models\Lecture;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\DocBlock\Tags\Link;
 
 class LectureController extends Controller
 {
@@ -57,7 +58,7 @@ class LectureController extends Controller
     {
         $lecture = Lecture::find($id);
 
-        if (!$lecture) {
+        if (!($lecture instanceof Lecture)) {
             return response()->json([
                 'message' => 'Lecture does not exist'
             ], 400);
@@ -81,7 +82,7 @@ class LectureController extends Controller
 
         $lecture = Lecture::find($id);
 
-        if (!$lecture) {
+        if (!($lecture instanceof Lecture)) {
             return response()->json([
                 'message' => 'Lecture does not exist'
             ], 400);
@@ -105,7 +106,7 @@ class LectureController extends Controller
     {
         $lecture = Lecture::find($id);
 
-        if (!$lecture) {
+        if (!($lecture instanceof Lecture)) {
             return response()->json([
                 'message' => 'Lecture does not exist'
             ], 400);
@@ -125,13 +126,13 @@ class LectureController extends Controller
         $student = Student::find($studentId);
         $lecture = Lecture::find($lectureId);
 
-        if (!$student) {
+        if (!($student instanceof Student)) {
             return response()->json([
                 'message' => 'Student does not exist'
             ], 400);
         }
 
-        if (!$lecture) {
+        if (!($lecture instanceof Lecture)) {
             return response()->json([
                 'message' => 'Lecture does not exist'
             ], 400);
