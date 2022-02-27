@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use PhpParser\Node\Scalar\String_;
 
 class StudentController extends Controller
 {
@@ -60,7 +61,7 @@ class StudentController extends Controller
     {
         $student = Student::with('group')->where('id', $id)->get();
 
-        if (!($student instanceof Student)) {
+        if (!$student) {
             return response()->json([
                 'message' => 'Student does not exist'
             ], 400);
@@ -86,7 +87,7 @@ class StudentController extends Controller
 
         if (!($student instanceof Student)) {
             return response()->json([
-                'message' => 'Teacher does not exist'
+                'message' => 'Student does not exist'
             ], 400);
         }
         $requestGroupId = $request->group_id;
@@ -132,13 +133,13 @@ class StudentController extends Controller
     {
         $student = Student::with('group')->where('id', $id)->get();
 
-        if (!($student instanceof Student)) {
+        if (!$student) {
             return response()->json([
                 'message' => 'Student does not exist'
             ], 400);
         }
 
-        if ($student[0]->group[0]) {
+        if (!$student[0]->group[0]) {
             return response()->json([
                 'message' => 'Student has no subjects'
             ], 400);
@@ -179,4 +180,14 @@ class StudentController extends Controller
             'student' => $student
         ], 200);
     }
+
+    public function studentSort(String $sorter)
+    {
+        $students = Student::all();
+
+        return response()->json([
+            'students' => $students->sortBy($sorter)
+        ], 200);
+    }
 }
+

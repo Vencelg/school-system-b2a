@@ -26,22 +26,21 @@ class TeacherController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+;     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(StoreTeacherRequest $request)
     {
         $validation = $request->validated();
 
-        $newTeacher = new Student([
+        $newTeacher = new Teacher([
+            'titles' => $request->titles,
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
             'date_of_birth' => $request->date_of_birth,
-            'date_of_enroll' => $request->date_of_enroll,
         ]);
 
         $newTeacher->save();
-        $newTeacher->group()->attach($request->group_id);
 
         return response()->json([
             'teacher' => $newTeacher
@@ -51,7 +50,7 @@ class TeacherController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
@@ -72,8 +71,8 @@ class TeacherController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(UpdateTeacherRequest $request, $id)
@@ -99,7 +98,7 @@ class TeacherController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)

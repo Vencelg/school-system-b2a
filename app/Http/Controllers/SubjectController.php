@@ -58,9 +58,9 @@ class SubjectController extends Controller
     {
         $subject = Subject::with(['group', 'teacher'])->where('id', $id)->get();
 
-        if (!($subject instanceof Subject)) {
+        if (!$subject) {
             return response()->json([
-                'message' => 'Student does not exist'
+                'message' => 'Subject does not exist'
             ], 400);
         }
 
