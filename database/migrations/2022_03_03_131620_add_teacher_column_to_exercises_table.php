@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddGradeColumnToStudentsTable extends Migration
+class AddTeacherColumnToExercisesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddGradeColumnToStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::table('students', function (Blueprint $table) {
-            $table->addColumn('integer', 'grade')->default(1)->after('credits');
+        Schema::table('exercises', function (Blueprint $table) {
+            $table->foreignId('teacher_id')->constrained()->cascadeOnDelete();
         });
     }
 
@@ -25,8 +25,8 @@ class AddGradeColumnToStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('students', function (Blueprint $table) {
-            $table->dropColumn('grade');
+        Schema::table('exercises', function (Blueprint $table) {
+            //
         });
     }
 }

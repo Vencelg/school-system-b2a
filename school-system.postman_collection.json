@@ -76,6 +76,30 @@
 					"response": []
 				},
 				{
+					"name": "students sorted",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}students/sortBy/credits",
+							"host": [
+								"{{url}}students"
+							],
+							"path": [
+								"sortBy",
+								"credits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "student graduate",
 					"request": {
 						"method": "POST",
@@ -91,18 +115,18 @@
 							"formdata": [
 								{
 									"key": "student_id",
-									"value": "2",
+									"value": "1",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{url}}students/graduate",
+							"raw": "{{url}}students/finishStudies",
 							"host": [
 								"{{url}}students"
 							],
 							"path": [
-								"graduate"
+								"finishStudies"
 							]
 						}
 					},
@@ -124,27 +148,27 @@
 							"formdata": [
 								{
 									"key": "firstname",
-									"value": "",
+									"value": "Václav",
 									"type": "text"
 								},
 								{
 									"key": "lastname",
-									"value": "",
+									"value": "Gazda",
 									"type": "text"
 								},
 								{
 									"key": "date_of_birth",
-									"value": "",
+									"value": "2004-01-20",
 									"type": "text"
 								},
 								{
 									"key": "date_of_enroll",
-									"value": "",
+									"value": "2021-01-20",
 									"type": "text"
 								},
 								{
 									"key": "group_id",
-									"value": "",
+									"value": "2",
 									"type": "text"
 								}
 							]
@@ -175,34 +199,41 @@
 								{
 									"key": "firstname",
 									"value": "",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "lastname",
-									"value": "",
+									"value": "Gazdic",
 									"type": "text"
 								},
 								{
 									"key": "date_of_birth",
 									"value": "",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "date_of_enroll",
 									"value": "",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "group_id",
 									"value": "",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "{{url}}students",
+							"raw": "{{url}}students/6",
 							"host": [
 								"{{url}}students"
+							],
+							"path": [
+								"6"
 							]
 						}
 					},
@@ -220,9 +251,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}students",
+							"raw": "{{url}}students/6",
 							"host": [
 								"{{url}}students"
+							],
+							"path": [
+								"6"
 							]
 						}
 					},
@@ -265,12 +299,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}subjects/1",
+							"raw": "{{url}}subjects/2",
 							"host": [
 								"{{url}}subjects"
 							],
 							"path": [
-								"1"
+								"2"
 							]
 						}
 					},
@@ -697,6 +731,92 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Add exercise for group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "group_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "exercise_id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "deadline_date",
+									"value": "2022-04-22",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}groups/addExercise",
+							"host": [
+								"{{url}}groups"
+							],
+							"path": [
+								"addExercise"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add lecture for group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "group_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "lecture_id",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "presentation_date",
+									"value": "2022-04-22",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}groups/addLecture",
+							"host": [
+								"{{url}}groups"
+							],
+							"path": [
+								"addLecture"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -762,12 +882,12 @@
 							"formdata": [
 								{
 									"key": "student_id",
-									"value": "",
+									"value": "1",
 									"type": "text"
 								},
 								{
 									"key": "prerequisite_id",
-									"value": "",
+									"value": "2",
 									"type": "text"
 								}
 							]
@@ -951,12 +1071,12 @@
 							"formdata": [
 								{
 									"key": "student_id",
-									"value": "",
+									"value": "2",
 									"type": "text"
 								},
 								{
 									"key": "exercise_id",
-									"value": "",
+									"value": "5",
 									"type": "text"
 								}
 							]
@@ -1120,7 +1240,7 @@
 					"response": []
 				},
 				{
-					"name": "show exercises",
+					"name": "show lecture",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1158,12 +1278,12 @@
 							"formdata": [
 								{
 									"key": "student_id",
-									"value": "",
+									"value": "2",
 									"type": "text"
 								},
 								{
 									"key": "lecture_id",
-									"value": "",
+									"value": "4",
 									"type": "text"
 								}
 							]
@@ -1181,7 +1301,7 @@
 					"response": []
 				},
 				{
-					"name": "add exercises",
+					"name": "add lecture",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1231,7 +1351,7 @@
 					"response": []
 				},
 				{
-					"name": "update exercises",
+					"name": "update lectures",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -1281,7 +1401,7 @@
 					"response": []
 				},
 				{
-					"name": "delete exercises",
+					"name": "delete lecture",
 					"request": {
 						"method": "DELETE",
 						"header": [

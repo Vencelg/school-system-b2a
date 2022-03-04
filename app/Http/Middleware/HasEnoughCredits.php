@@ -21,15 +21,15 @@ class HasEnoughCredits
     {
         $student = Student::find($request->student_id);
 
-        if (!$student) {
+        if (!($student instanceof Student)) {
             return response()->json([
                 'error' => 'Student does not exist',
             ]);
         }
 
-        if ($student->credits < 30) {
+        if ($student->credits < 180) {
             return response()->json([
-                'error' => 'Student has to have at least 30 credits before graduation',
+                'error' => 'Student has to have at least 180 credits before finishing studying',
             ]);
         }
 

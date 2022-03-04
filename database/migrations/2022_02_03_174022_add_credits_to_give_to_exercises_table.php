@@ -14,7 +14,7 @@ class AddCreditsToGiveToExercisesTable extends Migration
     public function up()
     {
         Schema::table('exercises', function (Blueprint $table) {
-            $table->addColumn('integer', 'credits_to_give')->default(0)->after('deadline_date');
+            $table->addColumn('integer', 'credits_to_give')->default(0)->after('own_computer');
         });
     }
 

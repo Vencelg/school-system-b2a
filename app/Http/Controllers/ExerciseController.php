@@ -28,7 +28,7 @@ class ExerciseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(StoreExerciseRequest $request)
@@ -38,8 +38,8 @@ class ExerciseController extends Controller
         $newExercise = new Exercise([
             'name' => $request->name,
             'own_computer' => $request->own_computer,
-            'deadline_date' => $request->deadline_date,
             'subject_id' => $request->subject_id,
+            'teacher_id' => $request->teacher_id,
         ]);
 
         $newExercise->save();
@@ -52,7 +52,7 @@ class ExerciseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
@@ -73,8 +73,8 @@ class ExerciseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(UpdateExerciseRequest $request, $id)
@@ -100,7 +100,7 @@ class ExerciseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
@@ -123,11 +123,12 @@ class ExerciseController extends Controller
     /**
      * Complete the specified exercise.
      *
-     * @param  int  $studentId
-     * @param  int  $exerciseId
+     * @param int $studentId
+     * @param int $exerciseId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function completeExercise(CompleteExerciseRequest $request) {
+    public function completeExercise(CompleteExerciseRequest $request)
+    {
         $studentId = $request->student_id;
         $exerciseId = $request->exercise_id;
 
@@ -149,13 +150,11 @@ class ExerciseController extends Controller
             'credits' => $student->credits + $exercise->credits_to_give,
         ]);
         $student->save();
-
-        $exercise->delete();
-
-        $studentName = $student->firstname.' '.$student->lastname;
+        
+        $studentName = $student->firstname . ' ' . $student->lastname;
 
         return response()->json([
-            'message' => 'Student '.$studentName.' completed the '.$exercise->name.' exercise'
+            'message' => 'Student ' . $studentName . ' completed the ' . $exercise->name . ' exercise'
         ], 200);
     }
 }

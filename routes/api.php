@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::apiResources([
+Route::apiResourcesw([
     'groups' => \App\Http\Controllers\GroupController::class,
     'subjects' => \App\Http\Controllers\SubjectController::class,
     'students' => \App\Http\Controllers\StudentController::class,
@@ -27,8 +27,9 @@ Route::apiResources([
 
 Route::get('students/{id}/subjects', [\App\Http\Controllers\StudentController::class, 'showSubjects']);
 Route::get('students/sortBy/{sorter}', [\App\Http\Controllers\StudentController::class, 'studentSort']);
-Route::post('students/graduate', [\App\Http\Controllers\StudentController::class, 'graduate'])->middleware(['hasNoPrerequisites', 'hasEnoughCredits']);
+Route::post('groups/addExercise', [\App\Http\Controllers\GroupController::class, 'addExerciseToGroup']);
+Route::post('groups/addLecture', [\App\Http\Controllers\GroupController::class, 'addLectureToGroup']);
+Route::post('students/finishStudies', [\App\Http\Controllers\StudentController::class, 'finishStudies'])->middleware(['hasNoPrerequisites', 'hasEnoughCredits']);
 Route::post('lectures/attend', [\App\Http\Controllers\LectureController::class, 'attendLecture']);
 Route::post('exercises/complete', [\App\Http\Controllers\ExerciseController::class, 'completeExercise']);
 Route::post('prerequisites/complete', [\App\Http\Controllers\PrerequisiteController::class, 'completePrerequisite']);
-

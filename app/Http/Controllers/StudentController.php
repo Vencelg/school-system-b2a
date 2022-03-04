@@ -153,7 +153,7 @@ class StudentController extends Controller
 
         foreach ($subjects as $subject) {
             if ($subject->group[0]->id == $groupId) {
-                array_push($schedule, $subject);
+                $schedule = [...$schedule, $subject];
             }
         }
 
@@ -162,7 +162,7 @@ class StudentController extends Controller
         ], 200);
     }
 
-    public function graduate(StudendGraduateRequest $request)
+    public function finishStudies(StudendGraduateRequest $request)
     {
         $student = Student::find($request->student_id);
 
@@ -172,12 +172,10 @@ class StudentController extends Controller
             ], 400);
         }
 
-        $student->grade += 1;
-        $student->credits -= 30;
-        $student->save();
+        $student->delete();
 
         return response()->json([
-            'student' => $student
+            'message' => 'Student has finished studying and was deleted'
         ], 200);
     }
 

@@ -16,9 +16,9 @@ class ExerciseFactory extends Factory
         return [
             'name' => $this->faker->city,
             'own_computer' => $this->faker->boolean,
-            'deadline_date' => $this->faker->dateTimeBetween('+0 days', '+2 years'),
             'credits_to_give' => $this->faker->numberBetween('0', '30'),
             'subject_id' => $this->faker->numberBetween(1, 5),
+            'teacher_id' => $this->faker->numberBetween(1, 5),
         ];
     }
 }

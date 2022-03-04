@@ -29,7 +29,7 @@ class LectureController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(StoreLectureRequest $request)
@@ -38,7 +38,8 @@ class LectureController extends Controller
 
         $newExercise = new Lecture([
             'name' => $request->name,
-            'presentation_date' => $request->presentation_date
+            'subject_id' => $request->subject_id,
+            'teacher_id' => $request->teacher_id,
         ]);
 
         $newExercise->save();
@@ -51,7 +52,7 @@ class LectureController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
@@ -72,8 +73,8 @@ class LectureController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(UpdateLectureRequest $request, $id)
@@ -99,7 +100,7 @@ class LectureController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
@@ -119,7 +120,8 @@ class LectureController extends Controller
         ], 200);
     }
 
-    public function attendLecture(AttendLectureRequest $request) {
+    public function attendLecture(AttendLectureRequest $request)
+    {
         $studentId = $request->student_id;
         $lectureId = $request->lecture_id;
 
@@ -138,12 +140,10 @@ class LectureController extends Controller
             ], 400);
         }
 
-        $lecture->delete();
-
-        $studentName = $student->firstname.' '.$student->lastname;
+        $studentName = $student->firstname . ' ' . $student->lastname;
 
         return response()->json([
-            'message' => 'Student '.$studentName.' completed the '.$lecture->name.' lecture'
+            'message' => 'Student ' . $studentName . ' completed the ' . $lecture->name . ' lecture'
         ], 200);
     }
 }

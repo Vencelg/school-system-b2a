@@ -16,7 +16,6 @@ class CreateLecturesTable extends Migration
         Schema::create('lectures', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->date('presentation_date');
             $table->timestamps();
         });
     }

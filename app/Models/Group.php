@@ -45,4 +45,14 @@ class Group extends Model
     {
         return $this->belongsToMany(Student::class);
     }
+
+    public function lectures() :BelongsToMany
+    {
+        return $this->belongsToMany(Lecture::class);
+    }
+
+    public function exercises() :BelongsToMany
+    {
+        return $this->belongsToMany(Exercise::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * App\Models\Lecture
@@ -34,12 +35,22 @@ class Lecture extends Model
 
     protected $fillable = [
         'name',
-        'presentation_date',
         'subject_id',
+        'teacher_id',
     ];
 
     public function subject(): BelongsTo
     {
         return $this->belongsTo(Subject::class, 'subject_id', 'id');
+    }
+
+    public function groups(): BelongsToMany
+    {
+        return $this->belongsToMany(Group::class);
+    }
+
+    public function teachers(): BelongsToMany
+    {
+        return $this->belongsToMany(Teacher::class);
     }
 }

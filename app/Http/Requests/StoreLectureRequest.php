@@ -25,8 +25,9 @@ class StoreLectureRequest extends FormRequest
     {
         return [
             'name' => 'string|required',
-            'presentation_date' => 'date|required|after_or_equal:today|date_format:Y-m-d',
-            'subject_id' => 'int|required|exists:App\Models\Subject,id'
+            'subject_id' => 'int|required|exists:App\Models\Subject,id',
+            'teacher_id' => 'int|required|exists:App\Models\Teacher,id'
+
         ];
     }
 }
